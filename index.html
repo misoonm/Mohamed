@@ -1,0 +1,477 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق سياسات أمان Windows</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), 
+                         url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%232c3e50"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="%233498db" stroke-width="1" stroke-opacity="0.2"/></svg>');
+            background-size: cover;
+            color: white;
+            padding: 3rem 0;
+            border-bottom: 5px solid var(--secondary-color);
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 2rem;
+            border: none;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            font-weight: bold;
+            border-bottom: none;
+            padding: 1.2rem 1.5rem;
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--secondary-color);
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+        
+        .step-img {
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 15px;
+        }
+        
+        .step-img:hover {
+            transform: scale(1.03);
+        }
+        
+        .explanation-box {
+            background-color: white;
+            border-left: 4px solid var(--secondary-color);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .security-badge {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <i class="fas fa-shield-alt fa-2x me-2"></i>
+                <span>تطبيق سياسات أمان Windows</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#steps">الخطوات العملية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#explanations">الشروحات النظرية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">معلومات الطالب</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- رأس الصفحة -->
+    <header class="header text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">تطبيق سياسات أمان Windows</h1>
+            <p class="lead mb-4">دليل شامل لتطبيق سياسات الأمان وتعزيز حماية أنظمة Windows</p>
+            <div class="d-flex justify-content-center gap-3">
+                <span class="security-badge"><i class="fas fa-lock me-1"></i> أمان كلمات المرور</span>
+                <span class="security-badge"><i class="fas fa-user-shield me-1"></i> إدارة المستخدمين</span>
+                <span class="security-badge"><i class="fas fa-cogs me-1"></i> خيارات الأمان</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="container my-5">
+        <!-- الخطوات العملية -->
+        <section id="steps" class="mb-5">
+            <h2 class="section-title mb-4">الخطوات العملية لتطبيق سياسات الأمان</h2>
+            <p class="lead mb-4">في هذا القسم سنعرض خطوات تطبيق سياسات أمان Windows مع صور توضيحية لكل خطوة:</p>
+            
+            <div class="row g-4">
+                <!-- سياسة كلمة المرور -->
+                <div class="col-lg-6">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center">
+                            <i class="fas fa-key me-2"></i>
+                            <span>1. سياسة كلمة المرور (Password Policy)</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <div class="bg-light p-4 rounded mb-3">
+                                    <div class="d-flex justify-content-center mb-2">
+                                        <i class="fas fa-image fa-4x text-muted"></i>
+                                    </div>
+                                    <p class="text-muted">صورة توضح إعدادات سياسة كلمة المرور في إدارة سياسة المجموعة</p>
+                                </div>
+                            </div>
+                            <div class="explanation-box">
+                                <h5 class="mb-3">شرح الصورة:</h5>
+                                <p>توضح الصورة نافذة إعدادات سياسة كلمة المرور في أداة إدارة سياسة المجموعة المحلية (Local Group Policy). يمكن رؤية الخيارات التالية:</p>
+                                <ul>
+                                    <li>تعقيد كلمة المرور المطلوبة (Password must meet complexity requirements)</li>
+                                    <li>الحد الأدنى لطول كلمة المرور (Minimum password length)</li>
+                                    <li>الحد الأقصى لعمر كلمة المرور (Maximum password age)</li>
+                                    <li>الحد الأدنى لعمر كلمة المرور (Minimum password age)</li>
+                                </ul>
+                                <p>هذه الإعدادات تسمح للمسؤول بتعزيز أمان كلمات المرور في النظام.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- سياسة تأمين الحساب -->
+                <div class="col-lg-6">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center">
+                            <i class="fas fa-lock me-2"></i>
+                            <span>2. سياسة تأمين الحساب (Account Lockout Policy)</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <div class="bg-light p-4 rounded mb-3">
+                                    <div class="d-flex justify-content-center mb-2">
+                                        <i class="fas fa-image fa-4x text-muted"></i>
+                                    </div>
+                                    <p class="text-muted">صورة توضح إعدادات تأمين الحساب في سياسات الأمان المحلية</p>
+                                </div>
+                            </div>
+                            <div class="explanation-box">
+                                <h5 class="mb-3">شرح الصورة:</h5>
+                                <p>تعرض الصورة إعدادات تأمين الحساب (Account Lockout Policy) في أداة الأمان المحلي (Local Security Policy). تتضمن هذه الإعدادات:</p>
+                                <ul>
+                                    <li>عتبة تأمين الحساب (Account lockout threshold): عدد محاولات تسجيل الدخول الفاشلة المسموح بها قبل تأمين الحساب</li>
+                                    <li>مدة تأمين الحساب (Account lockout duration): المدة الزمنية التي يبقى فيها الحساب مؤمناً</li>
+                                    <li>إعادة تعيين عداد تأمين الحساب بعد (Reset account lockout counter after): المدة الزمنية قبل إعادة تعيين العداد</li>
+                                </ul>
+                                <p>هذه الإعدادات تحمي النظام من هجمات القوة الغاشمة على كلمات المرور.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- المستخدمون والمجموعات المحلية -->
+                <div class="col-lg-6">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center">
+                            <i class="fas fa-users me-2"></i>
+                            <span>3. المستخدمون والمجموعات المحلية (Local Users and Groups)</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <div class="bg-light p-4 rounded mb-3">
+                                    <div class="d-flex justify-content-center mb-2">
+                                        <i class="fas fa-image fa-4x text-muted"></i>
+                                    </div>
+                                    <p class="text-muted">صورة توضح واجهة إدارة المستخدمين والمجموعات المحلية</p>
+                                </div>
+                            </div>
+                            <div class="explanation-box">
+                                <h5 class="mb-3">شرح الصورة:</h5>
+                                <p>توضح الصورة أداة إدارة المستخدمين والمجموعات المحلية (Local Users and Groups) في نظام Windows. يمكن رؤية:</p>
+                                <ul>
+                                    <li>قائمة المستخدمين المحليين (Local Users)</li>
+                                    <li>قائمة المجموعات المحلية (Local Groups)</li>
+                                    <li>خيارات إضافة مستخدم جديد أو مجموعة جديدة</li>
+                                    <li>خيارات تعديل خصائص المستخدمين والمجموعات</li>
+                                </ul>
+                                <p>تتيح هذه الأداة للمسؤول إنشاء وإدارة حسابات المستخدمين والمجموعات وتحديد الصلاحيات المناسبة لكل منها.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- تعيين حقوق المستخدم -->
+                <div class="col-lg-6">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center">
+                            <i class="fas fa-user-check me-2"></i>
+                            <span>4. تعيين حقوق المستخدم (User Rights Assignment)</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <div class="bg-light p-4 rounded mb-3">
+                                    <div class="d-flex justify-content-center mb-2">
+                                        <i class="fas fa-image fa-4x text-muted"></i>
+                                    </div>
+                                    <p class="text-muted">صورة توضح خيارات تعيين حقوق المستخدم في سياسات الأمان المحلية</p>
+                                </div>
+                            </div>
+                            <div class="explanation-box">
+                                <h5 class="mb-3">شرح الصورة:</h5>
+                                <p>تعرض الصورة نافذة تعيين حقوق المستخدم (User Rights Assignment) في أداة الأمان المحلي. تتضمن:</p>
+                                <ul>
+                                    <li>قائمة بالحقوق المختلفة (Allow log on locally, Back up files and directories, إلخ)</li>
+                                    <li>خيارات إضافة مستخدمين أو مجموعات إلى كل حق</li>
+                                    <li>إمكانية تعديل الحقوق الممنوحة للمستخدمين والمجموعات</li>
+                                </ul>
+                                <p>تتيح هذه الإعدادات للمسؤول التحكم الدقيق في الصلاحيات الممنوحة للمستخدمين والمجموعات على النظام.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- خيارات الأمان -->
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center">
+                            <i class="fas fa-cog me-2"></i>
+                            <span>5. خيارات الأمان (Security Options)</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <div class="bg-light p-4 rounded mb-3">
+                                    <div class="d-flex justify-content-center mb-2">
+                                        <i class="fas fa-image fa-4x text-muted"></i>
+                                    </div>
+                                    <p class="text-muted">صورة توضح خيارات الأمان المتقدمة في سياسات الأمان المحلية</p>
+                                </div>
+                            </div>
+                            <div class="explanation-box">
+                                <h5 class="mb-3">شرح الصورة:</h5>
+                                <p>تعرض الصورة خيارات الأمان (Security Options) في أداة الأمان المحلي. تتضمن هذه الخيارات:</p>
+                                <ul>
+                                    <li>إعدادات أمان الحسابات (Accounts: Rename administrator account, Guest account status, إلخ)</li>
+                                    <li>إعدادات التفاعل (Interactive logon: Message text for users attempting to log on)</li>
+                                    <li>إعدادات التحكم في الوصول (Network access: Sharing and security model for local accounts)</li>
+                                    <li>إعدادات مراقبة النظام (Audit: Audit the access of global system objects)</li>
+                                </ul>
+                                <p>توفر هذه الإعدادات طبقة إضافية من الأمان للتحكم في سلوك النظام وتعزيز الحماية.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- الشروحات النظرية -->
+        <section id="explanations" class="py-5">
+            <h2 class="section-title mb-4">الشروحات النظرية لسياسات الأمان</h2>
+            
+            <div class="row g-4">
+                <!-- سياسات كلمات المرور -->
+                <div class="col-lg-6">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center">
+                            <i class="fas fa-key me-2"></i>
+                            <span>سياسات كلمات المرور</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-primary mb-3">Minimum password length</h5>
+                            <p>الحد الأدنى لطول كلمة المرور: يحدد هذا الإعداد أقل عدد من الأحرف التي يجب أن تحتويها كلمة المرور. يُوصى بتعيين قيمة لا تقل عن 8 أحرف لزيادة الأمان.</p>
+                            
+                            <h5 class="text-primary mt-4 mb-3">Relax minimum password length limit</h5>
+                            <p>تخفيف قيود الحد الأدنى لطول كلمة المرور: هذا الإعداد يسمح باستخدام كلمات مرور أقصر من الحد الأدنى المحدد في حالات معينة، مثل عند استخدام كلمات مرور معقدة أو عند تطبيق طرق مصادقة إضافية. غير موصى به في بيئات الأمان العالي.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- سياسات التدقيق -->
+                <div class="col-lg-6">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center">
+                            <i class="fas fa-clipboard-list me-2"></i>
+                            <span>سياسات التدقيق (Audit Policies)</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-primary mb-3">تدقيق أحداث تسجيل الدخول (Audit logon events)</h5>
+                            <p>يسجل هذا الإعداد محاولات تسجيل الدخول الناجحة والفاشلة إلى النظام، مما يساعد في مراقبة الأنشطة المشبوهة واكتشاف هجمات القوة الغاشمة.</p>
+                            
+                            <h5 class="text-primary mt-4 mb-3">تدقيق الوصول إلى الكائنات (Audit object access)</h5>
+                            <p>يسجل هذا الإعداد محاولات الوصول إلى الملفات والمجلدات والكائنات الأخرى التي تم تمكين التدقيق عليها، مما يوفر رؤية حول كيفية استخدام البيانات الحساسة.</p>
+                            
+                            <h5 class="text-primary mt-4 mb-3">تدقيق تغيير السياسات (Audit policy change)</h5>
+                            <p>يسجل هذا الإعداد التغييرات التي تطرأ على إعدادات سياسات الأمان، مما يساعد في تتبع التعديلات على بيئة الأمان واكتشاف التغييرات غير المصرح بها.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- صلاحيات المجموعات -->
+                <div class="col-lg-6">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center">
+                            <i class="fas fa-users-cog me-2"></i>
+                            <span>صلاحيات المجموعات في المستخدمين والمجموعات المحلية</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-primary mb-3">المسؤولون (Administrators)</h5>
+                            <p>يمتلك أعضاء هذه المجموعة صلاحيات كاملة للتحكم في النظام، بما في ذلك تثبيت البرامج، تعديل الإعدادات، وإدارة المستخدمين والحسابات.</p>
+                            
+                            <h5 class="text-primary mt-4 mb-3">المستخدمون (Users)</h5>
+                            <p>يمتلك أعضاء هذه المجموعة صلاحيات محدودة تسمح لهم بتشغيل التطبيقات وتعديل إعداداتهم الشخصية فقط، دون القدرة على إجراء تغييرات تؤثر على النظام ككل.</p>
+                            
+                            <h5 class="text-primary mt-4 mb-3">مشغلو النسخ الاحتياطي (Backup Operators)</h5>
+                            <p>يمتلك أعضاء هذه المجموعة صلاحيات لنسخ الملفات واستعادتها بغض النظر عن أذونات الوصول، مما يمكنهم من تنفيذ عمليات النسخ الاحتياطي واستعادة البيانات.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- تعيين حقوق المستخدم -->
+                <div class="col-lg-6">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center">
+                            <i class="fas fa-user-tag me-2"></i>
+                            <span>تعيين حقوق المستخدم (User Rights Assignment)</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-primary mb-3">إنشاء ملف صفحة (Create a pagefile)</h5>
+                            <p>يمنح هذا الحق للمستخدم القدرة على إنشاء وتعديل ملف الصفحة (pagefile.sys) الذي يستخدم كذاكرة ظاهرية لزيادة سعة الذاكرة المتاحة للنظام.</p>
+                            
+                            <h5 class="text-primary mt-4 mb-3">الوصول إلى هذا الكمبيوتر من الشبكة (Access this computer from the network)</h5>
+                            <p>يمنح هذا الحق للمستخدمين والمجموعات القدرة على الاتصال بالكمبيوتر عبر الشبكة، وهو ضروري لمشاركة الملفات والطابعات.</p>
+                            
+                            <h5 class="text-primary mt-4 mb-3">تسجيل الدخول محلياً (Allow log on locally)</h5>
+                            <p>يمنح هذا الحق للمستخدمين القدرة على تسجيل الدخول مباشرة إلى الكمبيوتر باستخدام لوحة المفاتيح والشاشة المادية.</p>
+                            
+                            <h5 class="text-primary mt-4 mb-3">إدارة المراجعة وسجل الأمان (Manage auditing and security log)</h5>
+                            <p>يمنح هذا الحق للمستخدمين القدرة على تكوين إعدادات تدقيق الأمان وقراءة ومحاولة مسح سجل الأمان.</p>
+                            
+                            <h5 class="text-primary mt-4 mb-3">استعادة الملفات والدلائل (Restore files and directories)</h5>
+                            <p>يمنح هذا الحق للمستخدمين القدرة على استعادة الملفات والدلائل من النسخ الاحتياطي، بغض النظر عن أذونات الوصول.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- إنشاء ملف صفحة -->
+                <div class="col-lg-6">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center">
+                            <i class="fas fa-memory me-2"></i>
+                            <span>كيفية إنشاء ملف صفحة (Pagefile)</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-primary mb-3">إنشاء ذاكرة ظاهرية إضافية من الهارد</h5>
+                            <p>ملف الصفحة (Pagefile.sys) هو ملف على القرص الصلب يستخدمه نظام Windows كذاكرة ظاهرية لزيادة سعة الذاكرة المتاحة. لإنشاء أو تعديل ملف الصفحة:</p>
+                            <ol>
+                                <li>انقر بزر الماوس الأيمن على "هذا الكمبيوتر" واختر "خصائص"</li>
+                                <li>انقر على "إعدادات النظام المتقدمة" من القائمة اليمنى</li>
+                                <li>في علامة التبويب "خيارات متقدمة"، انقر على "إعدادات" في قسم الأداء</li>
+                                <li>انتقل إلى علامة التبويب "خيارات متقدمة" وانقر على "تغيير" في قسم الذاكرة الظاهرية</li>
+                                <li>قم بإلغاء تحديد "إدارة تلقائية لحجم ملف الصفحة لجميع محركات الأقراص"</li>
+                                <li>اختر محرك الأقراص ثم حدد "حجم مخصص"</li>
+                                <li>قم بتعيين الحجم الأولي والحد الأقصى (يوصى بضبط الحجم الأولي على 1.5 أضعاف ذاكرة RAM والحد الأقصى على 3 أضعاف ذاكرة RAM)</li>
+                                <li>انقر على "تعيين" ثم "موافق" وأعد تشغيل النظام</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- خيارات الأمان -->
+                <div class="col-lg-6">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center">
+                            <i class="fas fa-shield-alt me-2"></i>
+                            <span>خيارات الأمان (Security Options)</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-primary mb-3">Accounts: Rename administrator account</h5>
+                            <p>إعادة تسمية حساب المسؤول: يسمح هذا الإعداد بتغيير اسم حساب المسؤول من "Administrator" إلى اسم آخر، مما يزيد الأمان عن طريق جعل من الصعب على المهاجمين تخمين اسم حساب المسؤول.</p>
+                            
+                            <h5 class="text-primary mt-4 mb-3">Interactive logon: Message text for users attempting to log on</h5>
+                            <p>نص الرسالة لمستخدمي تسجيل الدخول التفاعلي: يسمح هذا الإعداد بتعيين رسالة تنبيه قانونية تظهر قبل تسجيل الدخول، وغالباً ما تستخدم لإبلاغ المستخدمين بالسياسات المقبولة والقيود القانونية على استخدام النظام.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- معلومات الطالب -->
+        <section id="about" class="py-5">
+            <div class="card bg-light border-0">
+                <div class="card-body text-center">
+                    <h3 class="section-title mb-4">معلومات الطالب</h3>
+                    <div class="d-flex justify-content-center align-items-center mb-4">
+                        <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+                            <i class="fas fa-user-graduate fa-2x text-white"></i>
+                        </div>
+                    </div>
+                    <h4 class="mb-2">الطالب: محمد عباس يحيى المؤيد</h4>
+                    <p class="lead mb-0">مشروع تطبيق سياسات أمان Windows</p>
+                    <p class="text-muted mt-3">تم تصميم وتطوير هذه الصفحة لتلبية متطلبات المشروع مع التركيز على الجوانب الأمنية والعملية</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- التذييل -->
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
