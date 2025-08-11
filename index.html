@@ -1,0 +1,759 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مقارنة برامج مكافحة الفيروسات والفيروسات الخطيرة</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #4fc3f7;
+            --danger-color: #d32f2f;
+            --success-color: #388e3c;
+            --warning-color: #f57c00;
+            --light-color: #f5f5f5;
+            --dark-color: #212121;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f1 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), #283593);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            background: linear-gradient(rgba(26, 35, 126, 0.9), rgba(26, 35, 126, 0.9)), 
+                         url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231a237e"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="%234fc3f7" stroke-width="1" stroke-opacity="0.2"/></svg>');
+            background-size: cover;
+            color: white;
+            padding: 3rem 0;
+            border-bottom: 5px solid var(--secondary-color);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="150" cy="50" r="8" fill="%234fc3f7" opacity="0.6"/><circle cx="180" cy="120" r="12" fill="%234fc3f7" opacity="0.4"/><circle cx="50" cy="150" r="10" fill="%234fc3f7" opacity="0.5"/><circle cx="100" cy="80" r="6" fill="%234fc3f7" opacity="0.7"/></svg>');
+            background-repeat: no-repeat;
+            opacity: 0.3;
+        }
+        
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 2rem;
+            border: none;
+            overflow: hidden;
+            background-color: white;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            font-weight: bold;
+            border-bottom: none;
+            padding: 1.2rem 1.5rem;
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            display: inline-block;
+            font-weight: 700;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+        
+        .antivirus-img {
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 15px;
+            height: 180px;
+            object-fit: contain;
+            background-color: #f8f9fa;
+            padding: 10px;
+        }
+        
+        .virus-img {
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 15px;
+            height: 180px;
+            object-fit: contain;
+            background-color: #fff8f8;
+            padding: 10px;
+            border: 2px solid #ffebee;
+        }
+        
+        .feature-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-list li i {
+            margin-left: 10px;
+            color: var(--secondary-color);
+            width: 24px;
+            text-align: center;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .comparison-table th {
+            background: linear-gradient(135deg, var(--primary-color), #283593);
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .comparison-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .rating {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        
+        .rating i {
+            color: #ffc107;
+            margin: 0 2px;
+        }
+        
+        .badge-danger {
+            background-color: var(--danger-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .badge-success {
+            background-color: var(--success-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .impact-level {
+            height: 10px;
+            border-radius: 5px;
+            background: linear-gradient(to right, #4caf50, #ff9800, #f44336);
+            margin: 10px 0;
+            position: relative;
+        }
+        
+        .impact-level::after {
+            content: attr(data-level);
+            position: absolute;
+            top: -25px;
+            right: 0;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .student-card {
+            background: linear-gradient(135deg, #3949ab, #1a237e);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .antivirus-img, .virus-img {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <i class="fas fa-shield-virus fa-2x me-2"></i>
+                <span>مكافحة الفيروسات والأمن السيبراني</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#antivirus">أفضل المكافحات</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#viruses">أسوأ الفيروسات</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#comparison">المقارنة</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#protection">نصائح الحماية</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- رأس الصفحة -->
+    <header class="header text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">مقارنة شاملة: أفضل برامج مكافحة الفيروسات وأخطر الفيروسات</h1>
+            <p class="lead mb-4">تحليل وتقييم لأقوى أدوات الحماية وأشد التهديدات الإلكترونية في العالم الرقمي</p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <span class="badge bg-success fs-6 p-2"><i class="fas fa-shield-alt me-1"></i> برامج الحماية</span>
+                <span class="badge bg-danger fs-6 p-2"><i class="fas fa-virus me-1"></i> الفيروسات الخطيرة</span>
+                <span class="badge bg-warning text-dark fs-6 p-2"><i class="fas fa-balance-scale me-1"></i> مقارنة شاملة</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="container my-5">
+        <!-- مقدمة -->
+        <section class="mb-5 text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="text-primary mb-4">أهمية برامج مكافحة الفيروسات في العصر الرقمي</h3>
+                            <p class="lead">في عالم يتزايد فيه الاعتماد على التكنولوجيا يومًا بعد يوم، تبرز أهمية حماية أجهزتنا وبياناتنا من التهديدات الإلكترونية. تعتبر برامج مكافحة الفيروسات خط الدفاع الأول ضد الهجمات الإلكترونية التي قد تسبب خسائر فادحة للأفراد والشركات على حد سواء.</p>
+                            <p>تتطور الفيروسات وبرامج الاختراق باستمرار، مما يجعل امتلاك برنامج مكافحة فيروسات قوي ومحدث أمرًا ضروريًا. في هذه الصفحة، سنستعرض أفضل برامج مكافحة الفيروسات المتاحة حاليًا، وأخطر الفيروسات التي واجهها العالم الرقمي، مع مقارنة شاملة بين أدوات الحماية المختلفة.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- أفضل برامج مكافحة الفيروسات -->
+        <section id="antivirus" class="mb-5">
+            <h2 class="section-title mb-4">أفضل برامج مكافحة الفيروسات</h2>
+            
+            <div class="row g-4">
+                <!-- Norton -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center">
+                            <i class="fas fa-shield-alt me-2"></i>
+                            <span>نورتون أنتي فايرس</span>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Norton Antivirus" class="antivirus-img w-100">
+                            <h4 class="text-primary my-3">Norton 360 Deluxe</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <ul class="feature-list text-start">
+                                <li><i class="fas fa-check-circle"></i> حماية شاملة من الفيروسات والبرمجيات الخبيثة</li>
+                                <li><i class="fas fa-check-circle"></i> جدار حماية ذكي متطور</li>
+                                <li><i class="fas fa-check-circle"></i> حماية خصوصية مع VPN مجاني</li>
+                                <li><i class="fas fa-check-circle"></i> إدارة كلمات المرور</li>
+                                <li><i class="fas fa-check-circle"></i> مراقبة الاختراق والقرصنة</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-light text-center">
+                            <span class="fw-bold text-success">التقييم: 9.8/10</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bitdefender -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center">
+                            <i class="fas fa-lock me-2"></i>
+                            <span>بت ديفيندر</span>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Bitdefender Antivirus" class="antivirus-img w-100">
+                            <h4 class="text-primary my-3">Bitdefender Total Security</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <ul class="feature-list text-start">
+                                <li><i class="fas fa-check-circle"></i> حماية في الوقت الحقيقي</li>
+                                <li><i class="fas fa-check-circle"></i> تقنية التصفح الآمن</li>
+                                <li><i class="fas fa-check-circle"></i> أدوات تحسين الأداء</li>
+                                <li><i class="fas fa-check-circle"></i> حماية كاميرا الويب</li>
+                                <li><i class="fas fa-check-circle"></i> حماية من سرقة الهوية</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-light text-center">
+                            <span class="fw-bold text-success">التقييم: 9.6/10</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Kaspersky -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center">
+                            <i class="fas fa-globe me-2"></i>
+                            <span>كاسبرسكي</span>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Kaspersky Antivirus" class="antivirus-img w-100">
+                            <h4 class="text-primary my-3">Kaspersky Total Security</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <ul class="feature-list text-start">
+                                <li><i class="fas fa-check-circle"></i> حماية متعددة الطبقات</li>
+                                <li><i class="fas fa-check-circle"></i> تقنية الذكاء الاصطناعي</li>
+                                <li><i class="fas fa-check-circle"></i> مدير كلمات المرور</li>
+                                <li><i class="fas fa-check-circle"></i> VPN غير محدود</li>
+                                <li><i class="fas fa-check-circle"></i> حماية الدفع الإلكتروني</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-light text-center">
+                            <span class="fw-bold text-success">التقييم: 9.5/10</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- McAfee -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center">
+                            <i class="fas fa-shield-virus me-2"></i>
+                            <span>ماك آفي</span>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="McAfee Antivirus" class="antivirus-img w-100">
+                            <h4 class="text-primary my-3">McAfee Total Protection</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <ul class="feature-list text-start">
+                                <li><i class="fas fa-check-circle"></i> حماية متعددة الأجهزة</li>
+                                <li><i class="fas fa-check-circle"></i> جدار حماية متقدم</li>
+                                <li><i class="fas fa-check-circle"></i> حماية من التصيد الاحتيالي</li>
+                                <li><i class="fas fa-check-circle"></i> أدوات تحسين النظام</li>
+                                <li><i class="fas fa-check-circle"></i> تخزين سحابي آمن</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-light text-center">
+                            <span class="fw-bold text-success">التقييم: 9.3/10</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Avast -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center">
+                            <i class="fas fa-user-shield me-2"></i>
+                            <span>أفاست</span>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Avast Antivirus" class="antivirus-img w-100">
+                            <h4 class="text-primary my-3">Avast Premium Security</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <ul class="feature-list text-start">
+                                <li><i class="fas fa-check-circle"></i> حماية شاملة مجانية</li>
+                                <li><i class="fas fa-check-circle"></i> مكافحة البرمجيات الخبيثة</li>
+                                <li><i class="fas fa-check-circle"></i> شبكة VPN قوية</li>
+                                <li><i class="fas fa-check-circle"></i> حماية من هجمات التصيد</li>
+                                <li><i class="fas fa-check-circle"></i> أداة تحديث البرامج</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-light text-center">
+                            <span class="fw-bold text-success">التقييم: 9.2/10</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- أسوأ الفيروسات -->
+        <section id="viruses" class="mb-5">
+            <h2 class="section-title mb-4">أسوأ الفيروسات الإلكترونية في التاريخ</h2>
+            
+            <div class="row g-4">
+                <!-- ILOVEYOU -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center bg-danger">
+                            <i class="fas fa-virus me-2"></i>
+                            <span>فيروس أحبك</span>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="ILOVEYOU Virus" class="virus-img w-100">
+                            <h4 class="text-danger my-3">ILOVEYOU (2000)</h4>
+                            <div class="impact-level" data-level="التأثير: عالي جداً"></div>
+                            <ul class="feature-list text-start">
+                                <li><i class="fas fa-exclamation-triangle text-danger"></i> الخسائر: ~10 مليار دولار</li>
+                                <li><i class="fas fa-exclamation-triangle text-danger"></i> الانتشار: 10% من أجهزة العالم</li>
+                                <li><i class="fas fa-exclamation-triangle text-danger"></i> آلية العمل: إرسال بريد مزيف بعنوان "أحبك"</li>
+                                <li><i class="fas fa-exclamation-triangle text-danger"></i> التأثير: تدمير ملفات المستخدمين</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-light text-center">
+                            <span class="fw-bold text-danger">خطورة: 9.8/10</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- WannaCry -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center bg-danger">
+                            <i class="fas fa-biohazard me-2"></i>
+                            <span>واناكراي</span>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="WannaCry Ransomware" class="virus-img w-100">
+                            <h4 class="text-danger my-3">WannaCry (2017)</h4>
+                            <div class="impact-level" data-level="التأثير: مدمر"></div>
+                            <ul class="feature-list text-start">
+                                <li><i class="fas fa-exclamation-triangle text-danger"></i> الخسائر: ~4 مليار دولار</li>
+                                <li><i class="fas fa-exclamation-triangle text-danger"></i> الانتشار: 230,000 جهاز في 150 دولة</li>
+                                <li><i class="fas fa-exclamation-triangle text-danger"></i> آلية العمل: هجوم الفدية (Ransomware)</li>
+                                <li><i class="fas fa-exclamation-triangle text-danger"></i> التأثير: شلّ أنظمة الرعاية الصحية في بريطانيا</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-light text-center">
+                            <span class="fw-bold text-danger">خطورة: 9.7/10</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- MyDoom -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center bg-danger">
+                            <i class="fas fa-radiation me-2"></i>
+                            <span>ماي دوم</span>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="MyDoom Virus" class="virus-img w-100">
+                            <h4 class="text-danger my-3">MyDoom (2004)</h4>
+                            <div class="impact-level" data-level="التأثير: هائل"></div>
+                            <ul class="feature-list text-start">
+                                <li><i class="fas fa-exclamation-triangle text-danger"></i> الخسائر: ~38 مليار دولار</li>
+                                <li><i class="fas fa-exclamation-triangle text-danger"></i> الانتشار: أسرع فيروس بريد إلكتروني</li>
+                                <li><i class="fas fa-exclamation-triangle text-danger"></i> آلية العمل: فتح باب خلفي في النظام</li>
+                                <li><i class="fas fa-exclamation-triangle text-danger"></i> التأثير: هجمات حجب الخدمة على مواقع كبرى</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-light text-center">
+                            <span class="fw-bold text-danger">خطورة: 9.5/10</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Zeus -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center bg-danger">
+                            <i class="fas fa-skull me-2"></i>
+                            <span>زيوس</span>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Zeus Trojan" class="virus-img w-100">
+                            <h4 class="text-danger my-3">Zeus (2007)</h4>
+                            <div class="impact-level" data-level="التأثير: واسع"></div>
+                            <ul class="feature-list text-start">
+                                <li><i class="fas fa-exclamation-triangle text-danger"></i> الخسائر: ~100 مليون دولار</li>
+                                <li><i class="fas fa-exclamation-triangle text-danger"></i> الانتشار: أكثر من 3.6 مليون جهاز</li>
+                                <li><i class="fas fa-exclamation-triangle text-danger"></i> آلية العمل: حصان طروادة لسرقة البيانات</li>
+                                <li><i class="fas fa-exclamation-triangle text-danger"></i> التأثير: سرقة بيانات مصرفية واعتمادات</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-light text-center">
+                            <span class="fw-bold text-danger">خطورة: 9.3/10</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stuxnet -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center bg-danger">
+                            <i class="fas fa-industry me-2"></i>
+                            <span>ستاكس نت</span>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Stuxnet Worm" class="virus-img w-100">
+                            <h4 class="text-danger my-3">Stuxnet (2010)</h4>
+                            <div class="impact-level" data-level="التأثير: استراتيجي"></div>
+                            <ul class="feature-list text-start">
+                                <li><i class="fas fa-exclamation-triangle text-danger"></i> الخسائر: غير معلنة (تدمير بنية تحتية)</li>
+                                <li><i class="fas fa-exclamation-triangle text-danger"></i> الانتشار: أنظمة صناعية متخصصة</li>
+                                <li><i class="fas fa-exclamation-triangle text-danger"></i> آلية العمل: استهداف أنظمة التحكم الصناعية</li>
+                                <li><i class="fas fa-exclamation-triangle text-danger"></i> التأثير: تدمير أجهزة الطرد المركزي النووية</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-light text-center">
+                            <span class="fw-bold text-danger">خطورة: 9.9/10</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- جدول المقارنة -->
+        <section id="comparison" class="mb-5">
+            <h2 class="section-title mb-4">مقارنة شاملة بين برامج مكافحة الفيروسات</h2>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">مقارنة الأداء والميزات والجوانب الاقتصادية</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>الميزة</th>
+                                    <th>نورتون</th>
+                                    <th>بت ديفيندر</th>
+                                    <th>كاسبرسكي</th>
+                                    <th>ماك آفي</th>
+                                    <th>أفاست</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="fw-bold">كشف الفيروسات</td>
+                                    <td>99.9%</td>
+                                    <td>99.8%</td>
+                                    <td>99.7%</td>
+                                    <td>99.6%</td>
+                                    <td>99.5%</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">الحماية من التصيد</td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">جدار الحماية</td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">شبكة VPN</td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-times text-danger"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">حماية كاميرا الويب</td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-times text-danger"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">مدير كلمات المرور</td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">السعر السنوي (5 أجهزة)</td>
+                                    <td>120$</td>
+                                    <td>100$</td>
+                                    <td>110$</td>
+                                    <td>90$</td>
+                                    <td>70$</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">تأثير على أداء الجهاز</td>
+                                    <td>منخفض</td>
+                                    <td>منخفض</td>
+                                    <td>متوسط</td>
+                                    <td>متوسط</td>
+                                    <td>مرتفع</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">النسخة المجانية</td>
+                                    <td><i class="fas fa-times text-danger"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                    <td><i class="fas fa-times text-danger"></i></td>
+                                    <td><i class="fas fa-check text-success"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- نصائح الحماية -->
+        <section id="protection" class="mb-5">
+            <h2 class="section-title mb-4">نصائح أساسية للحماية من الفيروسات</h2>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-success">
+                        <div class="card-header bg-success text-white">
+                            <i class="fas fa-shield-alt me-2"></i>
+                            <span>استخدم برنامج مكافحة فيروسات</span>
+                        </div>
+                        <div class="card-body">
+                            <p>تثبيت برنامج مكافحة فيروسات قوي وتحديثه باستمرار هو خط الدفاع الأول ضد التهديدات الإلكترونية.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-success">
+                        <div class="card-header bg-success text-white">
+                            <i class="fas fa-sync-alt me-2"></i>
+                            <span>حدث نظامك باستمرار</span>
+                        </div>
+                        <div class="card-body">
+                            <p>تحديث نظام التشغيل والبرامج يصلح الثغرات الأمنية التي قد يستغلها القراصنة.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-success">
+                        <div class="card-header bg-success text-white">
+                            <i class="fas fa-key me-2"></i>
+                            <span>استخدم كلمات مرور قوية</span>
+                        </div>
+                        <div class="card-body">
+                            <p>استخدم كلمات مرور معقدة وفريدة لكل حساب، ويفضل استخدام مدير كلمات المرور.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-success">
+                        <div class="card-header bg-success text-white">
+                            <i class="fas fa-user-secret me-2"></i>
+                            <span>كن حذراً من المرفقات</span>
+                        </div>
+                        <div class="card-body">
+                            <p>لا تفتح مرفقات البريد الإلكتروني من مرسلين غير معروفين أو رسائل تبدو مشبوهة.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- معلومات الطالب -->
+        <section class="mb-5">
+            <div class="student-card">
+                <div class="d-flex justify-content-center mb-4">
+                    <div class="bg-white rounded-circle d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+                        <i class="fas fa-user-graduate fa-3x text-primary"></i>
+                    </div>
+                </div>
+                <h3 class="mb-3">الطالب: محمد عباس يحيى المؤيد</h3>
+                <p class="lead mb-0">مشروع بحثي في مجال الأمن السيبراني</p>
+                <p class="mt-3">تم إعداد هذا البحث كجزء من متطلبات مادة أمن المعلومات</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- التذييل -->
+    <footer class="footer text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>عن البحث</h5>
+                    <p>تحليل وتقييم برامج مكافحة الفيروسات والفيروسات الخطيرة</p>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>مصادر البحث</h5>
+                    <p>AV-TEST • AV-Comparatives • Kaspersky Labs • NortonLifeLock</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>خبرة الأمن السيبراني</h5>
+                    <p>تم تطوير المحتوى بناءً على أحدث الدراسات في مجال الأمن الإلكتروني</p>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <p class="mb-0">جميع الحقوق محفوظة &copy; 2023 - محمد عباس يحيى المؤيد</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
