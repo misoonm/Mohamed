@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>محاكاة آمنة لاستهداف ملفات Excel وAccess</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/lucide-static/font/lucide.css">
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+
+  <!-- رأس الصفحة -->
+  <header class="bg-gradient-to-l from-blue-900 to-blue-600 text-white py-6 shadow-lg">
+    <div class="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-between">
+      <div>
+        <h1 class="text-3xl font-bold flex items-center gap-2">
+          <i class="lucide-shield-check text-green-400"></i>
+          مشروع محاكاة آمنة - أمن المعلومات
+        </h1>
+        <p class="mt-2 text-blue-200">تصميم سكربت PowerShell آمن لاختبار بيئات أمنية</p>
+      </div>
+      <a href="SafeSimulation_MoveToBackup.ps1" download class="mt-4 lg:mt-0 inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg shadow text-white transition">
+        <i class="lucide-download"></i> تحميل السكربت
+      </a>
+    </div>
+  </header>
+
+  <!-- صورة بانر -->
+  <section class="relative">
+    <img src="https://images.unsplash.com/photo-1581091215360-7a4f7f28f2e1?q=80&w=1200" alt="أمن المعلومات" class="w-full h-64 object-cover brightness-75">
+    <div class="absolute inset-0 flex items-center justify-center">
+      <h2 class="text-white text-3xl lg:text-4xl font-bold drop-shadow-lg">محاكاة آمنة داخل بيئة معزولة</h2>
+    </div>
+  </section>
+
+  <!-- المحتوى -->
+  <main class="container mx-auto px-4 py-8 space-y-8">
+
+    <!-- فكرة المشروع -->
+    <section class="bg-white rounded-2xl shadow-lg p-6 animate-fadeIn">
+      <h2 class="text-2xl font-bold mb-4 text-blue-700 flex items-center gap-2">
+        <i class="lucide-lightbulb"></i> فكرة المشروع
+      </h2>
+      <p>
+        هذا السكربت يحاكي سلوك برمجية خبيثة تستهدف ملفات Excel وAccess، لكنه
+        <span class="font-bold text-green-600">لا يحذف أي ملفات حقيقية</span>،
+        بل ينسخها إلى مجلد احتياطي ويسجل كل عملية في ملف CSV.  
+        مخصص للاستخدام في بيئة معزولة (VM) لغرض التعليم والاختبار.
+      </p>
+    </section>
+
+    <!-- صورة توضيحية -->
+    <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200" alt="تحليل الأكواد" class="rounded-2xl shadow-lg">
+
+    <!-- كود السكربت -->
+    <section class="bg-gray-900 rounded-2xl shadow-lg p-6 overflow-auto animate-fadeIn">
+      <h2 class="text-2xl font-bold mb-4 text-white flex items-center gap-2">
+        <i class="lucide-terminal"></i> كود PowerShell
+      </h2>
+      <pre class="text-green-400 text-sm whitespace-pre-wrap"><code>
+# SafeSimulation_MoveToBackup.ps1
+param(
+    [string]$TargetFolder = "C:\Users\Public\Documents\TestFiles",
+    [string]$BackupFolder = "C:\Users\Public\Documents\Backup_Sim",
+    [string]$LogFile = "C:\Users\Public\Documents\sim_log.csv"
+)
+
+if (-not (Test-Path $BackupFolder)) {
+    New-Item -ItemType Directory -Path $BackupFolder | Out-Null
+}
+
+$patterns = "*.xls","*.xlsx","*.accdb"
+$results = @()
+
+foreach ($p in $patterns) {
+    $files = Get-ChildItem -Path $TargetFolder -Filter $p -File -Recurse -ErrorAction SilentlyContinue
+    foreach ($f in $files) {
+        $dest = Join-Path $BackupFolder ($f.BaseName + "_SIMCOPY" + $f.Extension)
+        Copy-Item -Path $f.FullName -Destination $dest -Force
+        $entry = [PSCustomObject]@{
+            Timestamp    = (Get-Date).ToString("s")
+            OriginalPath = $f.FullName
+            BackupPath   = $dest
+            SizeBytes    = $f.Length
+        }
+        $results += $entry
+    }
+}
+
+if ($results.Count -gt 0) {
+    $results | Export-Csv -Path $LogFile -NoTypeInformation -Append
+    Write-Output "Simulation completed. $($results.Count) files copied. Log: $LogFile"
+} else {
+    Write-Output "No target files found under $TargetFolder"
+}
+      </code></pre>
+    </section>
+
+    <!-- خطوات التنفيذ -->
+    <section class="bg-white rounded-2xl shadow-lg p-6 animate-fadeIn">
+      <h2 class="text-2xl font-bold mb-4 text-blue-700 flex items-center gap-2">
+        <i class="lucide-list-checks"></i> خطوات التنفيذ
+      </h2>
+      <ol class="list-decimal list-inside space-y-2">
+        <li>إنشاء بيئة افتراضية (VM) معزولة عن الإنترنت.</li>
+        <li>إنشاء مجلد <code class="bg-gray-200 px-1 rounded">TestFiles</code> ووضع ملفات تجريبية فيه.</li>
+        <li>حفظ السكربت باسم <strong>SafeSimulation_MoveToBackup.ps1</strong>.</li>
+        <li>تشغيل PowerShell كمسؤول وتنفيذ:
+          <pre class="bg-gray-100 p-2 rounded text-sm">Set-ExecutionPolicy Bypass -Scope Process -Force
+.\SafeSimulation_MoveToBackup.ps1</pre>
+        </li>
+        <li>مراجعة مجلد النسخ الاحتياطي وملف <strong>sim_log.csv</strong> للتحليل.</li>
+      </ol>
+    </section>
+
+    <!-- صورة ثانية -->
+    <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?q=80&w=1200" alt="أمن البيانات" class="rounded-2xl shadow-lg">
+
+    <!-- النتائج -->
+    <section class="bg-white rounded-2xl shadow-lg p-6 animate-fadeIn">
+      <h2 class="text-2xl font-bold mb-4 text-blue-700 flex items-center gap-2">
+        <i class="lucide-bar-chart"></i> النتائج والتحليل
+      </h2>
+      <p>
+        بعد التنفيذ، ستحصل على نسخ آمنة من الملفات المستهدفة وسجل زمني لعمليات النسخ.
+        يمكن تحليل هذا السجل باستخدام Excel أو أي أداة تحليل بيانات لمعرفة سلوك المحاكاة.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- تذييل -->
+  <footer class="bg-gray-900 text-gray-300 py-4 mt-8">
+    <div class="container mx-auto px-4 text-center">
+      <p>© 2025 مشروع محاكاة أمن المعلومات — جميع الحقوق محفوظة</p>
+    </div>
+  </footer>
+
+  <!-- أنماط حركات بسيطة -->
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeIn {
+      animation: fadeIn 0.8s ease-in-out forwards;
+    }
+  </style>
+
+</body>
+</html>
