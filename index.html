@@ -22,7 +22,7 @@
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
@@ -70,42 +70,43 @@
             margin-bottom: 30px;
             border-left: 5px solid #4a90e2;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         .intro h2 {
             color: #2c3e50;
             margin-bottom: 15px;
             font-size: 1.8rem;
+            text-align: center;
         }
         
         .intro p {
             font-size: 1.1rem;
             line-height: 1.8;
             margin-bottom: 15px;
+            text-align: center;
+            max-width: 900px;
         }
         
-        .section {
+        /* تصميم أفقي جديد */
+        .horizontal-section {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 40px;
             background: white;
-            border-radius: 10px;
-            margin-bottom: 30px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            border: 1px solid #e1e4e8;
-        }
-        
-        .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
         
         .section-header {
             background: linear-gradient(to right, #3498db, #2c3e50);
             color: white;
-            padding: 20px;
+            padding: 20px 30px;
             display: flex;
             align-items: center;
-            cursor: pointer;
         }
         
         .section-header i {
@@ -118,113 +119,158 @@
             margin: 0;
         }
         
-        .section-content {
+        .steps-container {
+            display: flex;
+            overflow-x: auto;
             padding: 25px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
             gap: 25px;
+            scrollbar-width: thin;
+            scrollbar-color: #3498db #f0f0f0;
         }
         
-        @media (max-width: 768px) {
-            .section-content {
-                grid-template-columns: 1fr;
-            }
+        .steps-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .steps-container::-webkit-scrollbar-track {
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+        
+        .steps-container::-webkit-scrollbar-thumb {
+            background: #3498db;
+            border-radius: 4px;
         }
         
         .step {
             background: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 25px;
+            min-width: 380px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             border-left: 4px solid #3498db;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: auto;
         }
         
         .step:hover {
-            background: #e3f2fd;
-            transform: translateX(5px);
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-left: 4px solid #e74c3c;
         }
         
         .step h3 {
             color: #2c3e50;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             font-size: 1.3rem;
             display: flex;
             align-items: center;
+            min-height: 60px;
         }
         
         .step h3 i {
             margin-left: 10px;
             color: #3498db;
+            font-size: 1.4rem;
         }
         
         .step p {
             margin-bottom: 15px;
             font-size: 1.05rem;
+            flex-grow: 1;
         }
         
         .step-image {
-            background: #e0e0e0;
-            border-radius: 8px;
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border-radius: 10px;
+            height: 220px;
             overflow: hidden;
             margin-top: 15px;
             border: 1px solid #ddd;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         
         .step-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.4s ease;
         }
         
-        .image-placeholder {
+        .step-image img:hover {
+            transform: scale(1.05);
+        }
+        
+        .image-caption {
             text-align: center;
+            font-size: 0.9rem;
             color: #666;
-            padding: 20px;
-        }
-        
-        .image-placeholder i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: #3498db;
+            margin-top: 10px;
+            font-style: italic;
+            padding: 0 10px;
         }
         
         .note {
-            background: #fff8e1;
-            border-left: 4px solid #ffc107;
-            padding: 20px;
-            border-radius: 8px;
+            background: linear-gradient(to right, #fff8e1, #fff0c2);
+            border-left: 5px solid #ffc107;
+            padding: 25px;
+            border-radius: 10px;
             margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         .note h3 {
             color: #e65100;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .note h3 i {
+            margin-left: 10px;
         }
         
         .note p {
             font-size: 1.1rem;
             line-height: 1.7;
+            max-width: 900px;
+            text-align: center;
         }
         
         .command {
             background: #2c3e50;
             color: white;
-            padding: 15px;
-            border-radius: 5px;
+            padding: 15px 25px;
+            border-radius: 8px;
             font-family: monospace;
             font-size: 1.2rem;
-            margin: 15px 0;
+            margin: 20px 0;
             display: inline-block;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .note-image {
+            width: 100%;
+            max-width: 700px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+            border: 1px solid #ffc107;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .note-image img {
+            width: 100%;
+            display: block;
         }
         
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 25px;
             background: #2c3e50;
             color: white;
             font-size: 1.1rem;
@@ -243,15 +289,50 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .section {
+        .horizontal-section {
             animation: fadeIn 0.5s ease forwards;
         }
         
-        .section:nth-child(2) { animation-delay: 0.1s; }
-        .section:nth-child(3) { animation-delay: 0.2s; }
-        .section:nth-child(4) { animation-delay: 0.3s; }
-        .section:nth-child(5) { animation-delay: 0.4s; }
-        .section:nth-child(6) { animation-delay: 0.5s; }
+        .section-indicator {
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            gap: 10px;
+        }
+        
+        .indicator-dot {
+            width: 12px;
+            height: 12px;
+            background: #bdc3c7;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .indicator-dot.active {
+            background: #3498db;
+            transform: scale(1.3);
+        }
+        
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            .step {
+                min-width: 300px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.4rem;
+            }
+            
+            .steps-container {
+                gap: 20px;
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -273,22 +354,21 @@
                 <p>سيرشدك هذا الدليل خطوة بخطوة لاستخدام أداتين رئيسيتين: <span class="highlight">محرر نهج المجموعة المحلي (gpedit.msc)</span> و<span class="highlight">المستخدمون والمجموعات المحليون (lusrmgr.msc)</span> لتحسين أمان نظامك.</p>
             </div>
             
-            <div class="section">
+            <!-- الوصول إلى الأدوات اللازمة -->
+            <div class="horizontal-section">
                 <div class="section-header">
                     <i class="fas fa-door-open"></i>
                     <h2>الوصول إلى الأدوات اللازمة</h2>
                 </div>
-                <div class="section-content">
+                <div class="steps-container">
                     <div class="step">
                         <h3><i class="fas fa-window-restore"></i> فتح "Local Group Policy Editor"</h3>
                         <p>اضغط على مفتاحي <strong>Windows + R</strong> لفتح نافذة "تشغيل".</p>
                         <p>اكتب <strong>gpedit.msc</strong> واضغط على <strong>Enter</strong>.</p>
                         <div class="step-image">
-                            <div class="image-placeholder">
-                                <i class="fas fa-window-maximize"></i>
-                                <p>صورة توضيحية: نافذة Run مع كتابة gpedit.msc</p>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1974&auto=format&fit=crop" alt="نافذة Run مع كتابة gpedit.msc">
                         </div>
+                        <p class="image-caption">نافذة تشغيل Windows مع كتابة gpedit.msc</p>
                     </div>
                     
                     <div class="step">
@@ -296,143 +376,120 @@
                         <p>اضغط على مفتاحي <strong>Windows + R</strong> لفتح نافذة "تشغيل".</p>
                         <p>اكتب <strong>lusrmgr.msc</strong> واضغط على <strong>Enter</strong>.</p>
                         <div class="step-image">
-                            <div class="image-placeholder">
-                                <i class="fas fa-window-maximize"></i>
-                                <p>صورة توضيحية: نافذة Run مع كتابة lusrmgr.msc</p>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=1974&auto=format&fit=crop" alt="نافذة Run مع كتابة lusrmgr.msc">
                         </div>
+                        <p class="image-caption">نافذة تشغيل Windows مع كتابة lusrmgr.msc</p>
                     </div>
                 </div>
             </div>
             
-            <div class="section">
+            <!-- سياسات كلمات المرور -->
+            <div class="horizontal-section">
                 <div class="section-header">
                     <i class="fas fa-key"></i>
                     <h2>سياسات كلمات المرور (Password Policy)</h2>
                 </div>
-                <div class="section-content">
+                <div class="steps-container">
                     <div class="step">
                         <h3><i class="fas fa-history"></i> فرض تأريخ كلمة المرور</h3>
                         <p>الموقع: <strong>gpedit.msc > Computer Configuration > Windows Settings > Security Settings > Account Policies > Password Policy</strong></p>
                         <p>انقر نقرًا مزدوجًا على "Enforce password history".</p>
                         <p>اختر "Enabled" وحدد عدد كلمات المرور التي يجب تذكرها (مثلاً 12).</p>
-                        <p>اضغط Apply ثم OK.</p>
                         <div class="step-image">
-                            <div class="image-placeholder">
-                                <i class="fas fa-cog"></i>
-                                <p>صورة توضيحية: إعداد Enforce password history</p>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?q=80&w=2076&auto=format&fit=crop" alt="إعداد Enforce password history">
                         </div>
+                        <p class="image-caption">إعداد فرض تأريخ كلمة المرور في محرر نهج المجموعة</p>
                     </div>
                     
                     <div class="step">
                         <h3><i class="fas fa-calendar-alt"></i> الحد الأقصى لعمر كلمة المرور</h3>
                         <p>انقر نقرًا مزدوجًا على "Maximum password age".</p>
                         <p>اختر "Enabled" وحدد عدد الأيام لتغيير كلمة المرور (مثلاً 90 يومًا).</p>
-                        <p>اضغط Apply ثم OK.</p>
                         <div class="step-image">
-                            <div class="image-placeholder">
-                                <i class="fas fa-cog"></i>
-                                <p>صورة توضيحية: إعداد Maximum password age</p>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=2070&auto=format&fit=crop" alt="إعداد Maximum password age">
                         </div>
+                        <p class="image-caption">إعداد الحد الأقصى لعمر كلمة المرور</p>
                     </div>
                     
                     <div class="step">
                         <h3><i class="fas fa-text-width"></i> الحد الأدنى لطول كلمة المرور</h3>
                         <p>انقر نقرًا مزدوجًا على "Minimum password length".</p>
                         <p>اختر "Enabled" وحدد الحد الأدنى للأحرف (مثلاً 8 أحرف).</p>
-                        <p>اضغط Apply ثم OK.</p>
                         <div class="step-image">
-                            <div class="image-placeholder">
-                                <i class="fas fa-cog"></i>
-                                <p>صورة توضيحية: إعداد Minimum password length</p>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?q=80&w=2070&auto=format&fit=crop" alt="إعداد Minimum password length">
                         </div>
+                        <p class="image-caption">إعداد الحد الأدنى لطول كلمة المرور</p>
                     </div>
                     
                     <div class="step">
                         <h3><i class="fas fa-shield-alt"></i> متطلبات تعقيد كلمة المرور</h3>
                         <p>انقر نقرًا مزدوجًا على "Password must meet complexity requirements".</p>
                         <p>اختر "Enabled" لفرض استخدام أحرف كبيرة وصغيرة وأرقام ورموز.</p>
-                        <p>اضغط Apply ثم OK.</p>
                         <div class="step-image">
-                            <div class="image-placeholder">
-                                <i class="fas fa-cog"></i>
-                                <p>صورة توضيحية: إعداد Password complexity requirements</p>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1548092372-0d1bd40894a3?q=80&w=2070&auto=format&fit=crop" alt="إعداد Password complexity requirements">
                         </div>
+                        <p class="image-caption">إعداد متطلبات تعقيد كلمة المرور</p>
                     </div>
                 </div>
             </div>
             
-            <div class="section">
+            <!-- سياسات قفل الحساب -->
+            <div class="horizontal-section">
                 <div class="section-header">
                     <i class="fas fa-lock"></i>
                     <h2>سياسات قفل الحساب (Account Lockout Policy)</h2>
                 </div>
-                <div class="section-content">
+                <div class="steps-container">
                     <div class="step">
                         <h3><i class="fas fa-ban"></i> حد قفل الحساب</h3>
                         <p>الموقع: <strong>gpedit.msc > Computer Configuration > Windows Settings > Security Settings > Account Policies > Account Lockout Policy</strong></p>
                         <p>انقر نقرًا مزدوجًا على "Account lockout threshold".</p>
                         <p>اختر "Enabled" وحدد عدد المحاولات الفاشلة (مثلاً 3).</p>
-                        <p>اضغط Apply ثم OK.</p>
                         <div class="step-image">
-                            <div class="image-placeholder">
-                                <i class="fas fa-cog"></i>
-                                <p>صورة توضيحية: إعداد Account lockout threshold</p>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=2070&auto=format&fit=crop" alt="إعداد Account lockout threshold">
                         </div>
+                        <p class="image-caption">إعداد حد قفل الحساب بعد عدد من المحاولات الفاشلة</p>
                     </div>
                     
                     <div class="step">
                         <h3><i class="fas fa-clock"></i> مدة قفل الحساب</h3>
                         <p>انقر نقرًا مزدوجًا على "Account lockout duration".</p>
                         <p>حدد المدة التي يظل فيها الحساب مقفلاً (مثلاً 30 دقيقة).</p>
-                        <p>اضغط Apply ثم OK.</p>
                         <div class="step-image">
-                            <div class="image-placeholder">
-                                <i class="fas fa-cog"></i>
-                                <p>صورة توضيحية: إعداد Account lockout duration</p>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1589652717521-10c0d092dea9?q=80&w=2070&auto=format&fit=crop" alt="إعداد Account lockout duration">
                         </div>
+                        <p class="image-caption">إعداد مدة قفل الحساب بعد تجاوز المحاولات المسموحة</p>
                     </div>
                     
                     <div class="step">
                         <h3><i class="fas fa-redo"></i> إعادة تعيين عداد القفل</h3>
                         <p>انقر نقرًا مزدوجًا على "Reset account lockout counter after".</p>
                         <p>حدد المدة قبل إعادة تعيين العداد (مثلاً 30 دقيقة).</p>
-                        <p>اضغط Apply ثم OK.</p>
                         <div class="step-image">
-                            <div class="image-placeholder">
-                                <i class="fas fa-cog"></i>
-                                <p>صورة توضيحية: إعداد Reset account lockout counter</p>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?q=80&w=2076&auto=format&fit=crop" alt="إعداد Reset account lockout counter">
                         </div>
+                        <p class="image-caption">إعداد مدة إعادة تعيين عداد قفل الحساب</p>
                     </div>
                 </div>
             </div>
             
-            <div class="section">
+            <!-- المستخدمون والمجموعات المحليون -->
+            <div class="horizontal-section">
                 <div class="section-header">
                     <i class="fas fa-user-friends"></i>
                     <h2>المستخدمون والمجموعات المحليون (Local Users and Groups)</h2>
                 </div>
-                <div class="section-content">
+                <div class="steps-container">
                     <div class="step">
                         <h3><i class="fas fa-user-plus"></i> إنشاء مستخدم جديد</h3>
                         <p>الموقع: <strong>lusrmgr.msc</strong></p>
                         <p>انقر بزر الفأرة الأيمن على "Users" واختر "New User".</p>
                         <p>أدخل اسم المستخدم وكلمة المرور وتأكيدها.</p>
                         <p>ألغِ تحديد "User must change password at next logon" وحدد "Password never expires" إذا لزم الأمر.</p>
-                        <p>اضغط Create.</p>
                         <div class="step-image">
-                            <div class="image-placeholder">
-                                <i class="fas fa-user"></i>
-                                <p>صورة توضيحية: نافذة إنشاء مستخدم جديد</p>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=80&w=1931&auto=format&fit=crop" alt="نافذة إنشاء مستخدم جديد">
                         </div>
+                        <p class="image-caption">إنشاء مستخدم جديد في إدارة المستخدمين والمجموعات المحليين</p>
                     </div>
                     
                     <div class="step">
@@ -441,11 +498,9 @@
                         <p>أدخل اسم المجموعة.</p>
                         <p>اضغط Create.</p>
                         <div class="step-image">
-                            <div class="image-placeholder">
-                                <i class="fas fa-users-cog"></i>
-                                <p>صورة توضيحية: نافذة إنشاء مجموعة جديدة</p>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop" alt="نافذة إنشاء مجموعة جديدة">
                         </div>
+                        <p class="image-caption">إنشاء مجموعة جديدة في إدارة المستخدمين والمجموعات المحليين</p>
                     </div>
                     
                     <div class="step">
@@ -454,107 +509,89 @@
                         <p>انقر على "Add".</p>
                         <p>اكتب اسم المستخدم (مثلاً user1) واضغط "Check Names" ثم OK.</p>
                         <div class="step-image">
-                            <div class="image-placeholder">
-                                <i class="fas fa-user-friends"></i>
-                                <p>صورة توضيحية: إضافة مستخدم إلى مجموعة</p>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2069&auto=format&fit=crop" alt="إضافة مستخدم إلى مجموعة">
                         </div>
+                        <p class="image-caption">إضافة مستخدم إلى مجموعة في إدارة المستخدمين والمجموعات المحليين</p>
                     </div>
                 </div>
             </div>
             
-            <div class="section">
+            <!-- تعيين حقوق المستخدم -->
+            <div class="horizontal-section">
                 <div class="section-header">
                     <i class="fas fa-user-cog"></i>
                     <h2>تعيين حقوق المستخدم (User Rights Assignment)</h2>
                 </div>
-                <div class="section-content">
+                <div class="steps-container">
                     <div class="step">
                         <h3><i class="fas fa-power-off"></i> إيقاف تشغيل النظام</h3>
                         <p>الموقع: <strong>gpedit.msc > Computer Configuration > Windows Settings > Security Settings > Local Policies > User Rights Assignment</strong></p>
                         <p>انقر نقرًا مزدوجًا على "Shut down the system".</p>
                         <p>انقر على "Add User or Group" لإضافة المستخدمين أو المجموعات.</p>
-                        <p>اضغط Apply ثم OK.</p>
                         <div class="step-image">
-                            <div class="image-placeholder">
-                                <i class="fas fa-cog"></i>
-                                <p>صورة توضيحية: إعداد Shut down the system</p>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" alt="إعداد Shut down the system">
                         </div>
+                        <p class="image-caption">تعيين حقوق إيقاف تشغيل النظام للمستخدمين</p>
                     </div>
                     
                     <div class="step">
                         <h3><i class="fas fa-clock"></i> تغيير وقت النظام</h3>
                         <p>انقر نقرًا مزدوجًا على "Change the system time".</p>
                         <p>يمكنك إزالة مجموعة "Users" لمنع المستخدمين العاديين من تغيير الوقت.</p>
-                        <p>اضغط Apply ثم OK.</p>
                         <div class="step-image">
-                            <div class="image-placeholder">
-                                <i class="fas fa-cog"></i>
-                                <p>صورة توضيحية: إعداد Change the system time</p>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1543285198-3af15c4592ce?q=80&w=2028&auto=format&fit=crop" alt="إعداد Change the system time">
                         </div>
+                        <p class="image-caption">إعداد حقوق تغيير وقت النظام</p>
                     </div>
                     
                     <div class="step">
                         <h3><i class="fas fa-network-wired"></i> الوصول إلى هذا الكمبيوتر من الشبكة</h3>
                         <p>انقر نقرًا مزدوجًا على "Access this computer from the network".</p>
                         <p>أضف أو أزل المستخدمين والمجموعات للتحكم في من يمكنه الاتصال بالكمبيوتر عبر الشبكة.</p>
-                        <p>اضغط Apply ثم OK.</p>
                         <div class="step-image">
-                            <div class="image-placeholder">
-                                <i class="fas fa-cog"></i>
-                                <p>صورة توضيحية: إعداد Access this computer from the network</p>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=1974&auto=format&fit=crop" alt="إعداد Access this computer from the network">
                         </div>
+                        <p class="image-caption">إعداد حقوق الوصول إلى الكمبيوتر من الشبكة</p>
                     </div>
                 </div>
             </div>
             
-            <div class="section">
+            <!-- خيارات الأمان -->
+            <div class="horizontal-section">
                 <div class="section-header">
                     <i class="fas fa-shield-virus"></i>
                     <h2>خيارات الأمان (Security Options)</h2>
                 </div>
-                <div class="section-content">
+                <div class="steps-container">
                     <div class="step">
                         <h3><i class="fas fa-user-secret"></i> عدم عرض آخر اسم مستخدم</h3>
                         <p>الموقع: <strong>gpedit.msc > Computer Configuration > Windows Settings > Security Settings > Local Policies > Security Options</strong></p>
                         <p>انقر نقرًا مزدوجًا على "Interactive logon: Do not display last user name".</p>
                         <p>اختر "Enabled" لمنع عرض اسم المستخدم الأخير.</p>
-                        <p>اضغط Apply ثم OK.</p>
                         <div class="step-image">
-                            <div class="image-placeholder">
-                                <i class="fas fa-cog"></i>
-                                <p>صورة توضيحية: إعداد عدم عرض آخر اسم مستخدم</p>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1974&auto=format&fit=crop" alt="إعداد عدم عرض آخر اسم مستخدم">
                         </div>
+                        <p class="image-caption">إعداد عدم عرض آخر اسم مستخدم عند تسجيل الدخول</p>
                     </div>
                     
                     <div class="step">
                         <h3><i class="fas fa-comment-alt"></i> نص رسالة تسجيل الدخول</h3>
                         <p>انقر نقرًا مزدوجًا على "Interactive logon: Message text for users attempting to log on".</p>
                         <p>اكتب رسالة تحذيرية تظهر للمستخدمين قبل تسجيل الدخول.</p>
-                        <p>اضغط Apply ثم OK.</p>
                         <div class="step-image">
-                            <div class="image-placeholder">
-                                <i class="fas fa-cog"></i>
-                                <p>صورة توضيحية: إعداد رسالة تسجيل الدخول</p>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2070&auto=format&fit=crop" alt="إعداد رسالة تسجيل الدخول">
                         </div>
+                        <p class="image-caption">إعداد رسالة تسجيل الدخول لزيادة الأمان</p>
                     </div>
                     
                     <div class="step">
                         <h3><i class="fas fa-user-times"></i> حالة حساب المسؤول</h3>
                         <p>انقر نقرًا مزدوجًا على "Accounts: Administrator account status".</p>
                         <p>اختر "Disabled" لتعطيل حساب المسؤول الافتراضي.</p>
-                        <p>اضغط Apply ثم OK.</p>
                         <div class="step-image">
-                            <div class="image-placeholder">
-                                <i class="fas fa-cog"></i>
-                                <p>صورة توضيحية: تعطيل حساب المسؤول</p>
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=2070&auto=format&fit=crop" alt="تعطيل حساب المسؤول">
                         </div>
+                        <p class="image-caption">تعطيل حساب المسؤول الافتراضي لزيادة الأمان</p>
                     </div>
                 </div>
             </div>
@@ -564,6 +601,10 @@
                 <p>بعد تطبيق أي من هذه السياسات، يجب تحديث نهج المجموعة لتفعيل التغييرات على الفور. يمكنك القيام بذلك عبر تشغيل نافذة الأوامر كمسؤول وكتابة الأمر التالي:</p>
                 <div class="command">gpupdate /force</div>
                 <p>هذا الأمر سيؤكد تطبيق جميع التغييرات التي أجريتها على سياسات المجموعة فوراً دون الحاجة لإعادة تشغيل النظام.</p>
+                <div class="note-image">
+                    <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=1974&auto=format&fit=crop" alt="أمر تحديث سياسات المجموعة">
+                </div>
+                <p class="image-caption">تشغيل الأمر gpupdate /force لتحديث سياسات المجموعة</p>
             </div>
         </div>
         
@@ -572,5 +613,52 @@
             <p>تم تصميم هذه الصفحة لتكون مرجعاً شاملاً لإعدادات أمان نظام Windows</p>
         </footer>
     </div>
+    
+    <script>
+        // كود لجعل الخطوات قابلة للتمرير الأوتوماتيكي
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.horizontal-section');
+            
+            sections.forEach(section => {
+                const stepsContainer = section.querySelector('.steps-container');
+                const steps = section.querySelectorAll('.step');
+                
+                // إنشاء نقاط المؤشر
+                const indicator = document.createElement('div');
+                indicator.className = 'section-indicator';
+                
+                steps.forEach((_, index) => {
+                    const dot = document.createElement('div');
+                    dot.className = 'indicator-dot';
+                    if(index === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => {
+                        stepsContainer.scrollTo({
+                            left: stepsContainer.offsetWidth * index,
+                            behavior: 'smooth'
+                        });
+                    });
+                    indicator.appendChild(dot);
+                });
+                
+                section.appendChild(indicator);
+                
+                // التمرير التلقائي
+                let currentIndex = 0;
+                setInterval(() => {
+                    currentIndex = (currentIndex + 1) % steps.length;
+                    
+                    stepsContainer.scrollTo({
+                        left: stepsContainer.offsetWidth * currentIndex,
+                        behavior: 'smooth'
+                    });
+                    
+                    // تحديث النقاط النشطة
+                    indicator.querySelectorAll('.indicator-dot').forEach((dot, i) => {
+                        dot.classList.toggle('active', i === currentIndex);
+                    });
+                }, 5000);
+            });
+        });
+    </script>
 </body>
 </html>
